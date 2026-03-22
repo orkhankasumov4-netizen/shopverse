@@ -1,0 +1,112 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --amazon-orange: #FF9900;
+    --amazon-navy:   #232F3E;
+    --amazon-teal:   #00A8A8;
+  }
+
+  * { box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    @apply bg-gray-50 text-gray-900;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { @apply bg-gray-100; }
+  ::-webkit-scrollbar-thumb { @apply bg-gray-400 rounded-full; }
+  ::-webkit-scrollbar-thumb:hover { @apply bg-gray-500; }
+}
+
+@layer components {
+  /* Skeleton shimmer */
+  .skeleton {
+    @apply bg-gray-200 rounded animate-pulse;
+    background: linear-gradient(90deg, #e5e7eb 25%, #f3f4f6 50%, #e5e7eb 75%);
+    background-size: 1000px 100%;
+    animation: shimmer 1.5s infinite;
+  }
+
+  /* Product card */
+  .product-card {
+    @apply bg-white rounded-lg border border-gray-200 overflow-hidden
+           transition-all duration-200 hover:shadow-product-hover hover:-translate-y-0.5 cursor-pointer;
+  }
+
+  /* Button variants */
+  .btn-primary {
+    @apply bg-amazon-yellow hover:bg-amazon-orange text-amazon-navy font-semibold
+           px-4 py-2 rounded-lg transition-colors duration-150 active:scale-95;
+  }
+
+  .btn-orange {
+    @apply bg-amazon-orange hover:bg-amazon-orange-dark text-white font-semibold
+           px-4 py-2 rounded-lg transition-colors duration-150 active:scale-95;
+  }
+
+  .btn-outline {
+    @apply border border-gray-300 bg-white hover:bg-gray-50 text-gray-700
+           px-4 py-2 rounded-lg transition-colors duration-150;
+  }
+
+  /* Input */
+  .input {
+    @apply w-full border border-gray-300 rounded-lg px-3 py-2.5 text-sm
+           focus:outline-none focus:ring-2 focus:ring-amazon-orange focus:border-transparent
+           transition-shadow duration-150;
+  }
+
+  /* Badge */
+  .badge {
+    @apply inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-medium;
+  }
+
+  /* Section heading */
+  .section-heading {
+    @apply text-xl font-bold text-amazon-navy font-display;
+  }
+
+  /* Page container */
+  .page-container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  /* Star rating */
+  .stars {
+    @apply text-amazon-orange flex items-center gap-0.5;
+  }
+}
+
+/* Price formatting */
+.price {
+  @apply text-amazon-red font-bold;
+}
+.price-original {
+  @apply text-gray-400 line-through text-sm;
+}
+
+/* Navbar link */
+.nav-link {
+  @apply text-white hover:text-amazon-yellow text-sm font-medium
+         border border-transparent hover:border-white px-2 py-1 rounded
+         transition-all duration-150;
+}
+
+/* Sticky nav shadow */
+.nav-shadow {
+  box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+}
+
+/* Deal badge pulse */
+@keyframes dealPulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(255,153,0,0.4); }
+  50%       { box-shadow: 0 0 0 6px rgba(255,153,0,0); }
+}
+.deal-badge { animation: dealPulse 2s infinite; }
